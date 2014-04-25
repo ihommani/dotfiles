@@ -25,7 +25,8 @@
         # If you want to use Sublime Text 2's subl wrapper:
         # editor = subl -w
         whitespace = -trailing-space
-	editor = vim
+    editor = vim
+	autocrlf = input
 [diff]
         mnemonicPrefix = true
         wordRegex = .
