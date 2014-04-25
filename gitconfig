@@ -37,6 +37,7 @@
         abbrevCommit = true
 [merge]
         conflictStyle = diff3
+	tool = meld
 [mergetool]
         keepBackup = false
         keepTemporaries = false
