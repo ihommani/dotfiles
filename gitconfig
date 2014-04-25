@@ -52,3 +52,5 @@
 	helper = cache --timeout=3600
 [help]
 	autocorrect = 1
+[rerere]
+	enabled = true
