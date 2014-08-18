@@ -23,6 +23,53 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
      
+""""""""""""""""""""""""""""""""
+"   VUNDLE
+""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+" git repos on your local machine (i.e. when working on your own plugin)
+Plugin 'scrooloose/nerdtree'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+Plugin 'user/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -121,7 +168,7 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set ignorecase		" La recherche est indépendante de la casse
 set sm			" Affiche les parenthèse 
-"set nobackup		" Ne pas faire de backupfile (*~)
+set nobackup		" Ne pas faire de backupfile (*~)
 set paste "Put vim in paste mode, to copy text from a window into vim"
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
@@ -435,3 +482,7 @@ fun! RangerChooser()
 endfun
 map ,r :call RangerChooser()<CR>
 
+"""""""""""""""""""
+" NERD TREE
+"""""""""""""""""""
+autocmd vimenter * NERDTree
