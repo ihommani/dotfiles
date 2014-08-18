@@ -19,6 +19,7 @@
 	pushnote = !sh -c 'git push $1 refs/notes/*' -
 	yesterday = !clear && git log --since '1 day ago' --no-merges --pretty=format':%C(yellow)%h %aN%n %B%n' --author ihommani
     show = !git show --oneline
+	test = "!gi() { curl http://www.gitignore.io/api/$@ ;}; gi"
 [core]
 	pager = cat
         # Pas de bol et sous Windows sans msysGit ? Supposons que tu as tout de même Notepad++…
