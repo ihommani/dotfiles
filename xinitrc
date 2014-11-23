@@ -10,6 +10,10 @@
  # done
  # unset f
 #fi
+userresources=$HOME/.Xresources
+if [ -f "$userresources" ]; then
+    xrdb -merge "$userresources"
+fi
 
 #démarrage du Daemon Urxvt
 urxvtd -q -o -f
