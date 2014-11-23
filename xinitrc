@@ -32,6 +32,12 @@ setxkbmap fr
 #Map capslock on escape key
 setxkbmap -option caps:escape & 
 
+#Export some envvar for idea
+export IDEA_JDK=~/bin/jdk1.7.0_71
+
+# Disable touchpad while typing
+syndaemon -d -t -K -i 2
+
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
