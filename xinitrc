@@ -31,9 +31,7 @@ xset -b
 #devmon &
 
 # Start tmux session in the background
-#urxvt -e bash -c "tmux attach -d -t mysession" &
-# See how to put a loop
-#urxvtc -g 81x24+0+0 -e tmux attach-session -t 0
+urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME" &
 
 #start chromium
 #chromium &
