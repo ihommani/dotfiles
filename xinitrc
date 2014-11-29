@@ -21,6 +21,9 @@ fi
 #démarrage du Daemon Urxvt
 urxvtd -q -o -f
 
+# Disable beep sound
+xset -b
+
 #demarrage de mpd
 #mpd
 
