@@ -15,6 +15,9 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
+# Démarrage de xscreenSaver
+/usr/bin/xscreensaver -no-splash &
+
 #démarrage du Daemon Urxvt
 urxvtd -q -o -f
 
@@ -28,7 +31,6 @@ urxvtd -q -o -f
 #urxvt -e bash -c "tmux attach -d -t mysession" &
 # See how to put a loop
 #urxvtc -g 81x24+0+0 -e tmux attach-session -t 0
-#/usr/bin/xscreensaver -no-splash &
 
 #start chromium
 #chromium &
