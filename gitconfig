@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [alias]
-	st = status
+	st = status -u
 	ci = commit
 	lg = log --graph --notes=jenkins --notes --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset - %Cblue%N%Creset'
 	co = checkout
@@ -59,6 +59,3 @@
 	enabled = true
 [http]
 	sslVerify = true
-[github]
-	token = 899b56e0cf958136456a9cf1fbc3c90bb7b96731
-	user = ihommani
