@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [alias]
-	st = status -u
+	st = status -u all
 	ci = commit
 	lg = log --graph --notes=jenkins --notes --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset - %Cblue%N%Creset'
 	co = checkout
