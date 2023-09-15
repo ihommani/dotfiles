@@ -4,9 +4,15 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+{{ if eq .chezmoi.fqdnHostname "MH-HO-118260.how2.ho.ms.lvmh" }}
+[user]
+	name = ihommanilv
+	email = ismael.hommani.ext@lvmh.com
+{{ else }}
 [user]
 	name = ihommani
-	email = ismael.hommani.ext@lvmh.com
+	email = ismaelhommani@gmail.com
+{{ end }}
 [alias]
 	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [safe]
