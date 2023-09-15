@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ ! -f "/home/ihommani/.config/chezmoi/key.txt" ]; then
+    mkdir -p "${HOME}/.config/chezmoi"
+    age -d -i "{{ .chezmoi.sourceDir }}/key.txt.age" "{{ .chezmoi.sourceDir }}/key.txt.age" > "${HOME}/.config/chezmoi/key.txt"
+    chmod 600 "${HOME}/key.txt"
+fi
