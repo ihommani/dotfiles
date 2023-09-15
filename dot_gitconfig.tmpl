@@ -13,6 +13,23 @@
 	name = ihommani
 	email = ismaelhommani@gmail.com
 {{ end }}
+[alias]
+	st = status -u all
+	ci = commit
+	lg = log --graph --notes=jenkins --notes --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset - %Cblue%N%Creset'
+	co = checkout
+    standup = !git-standup
+    export = "!f() { git archive --format zip --output $1 $2; }; f"
+    ulg = !(git fetch && git lg ..@{u})
+    llg = !(git lg @{u}..)
+    ignored = clean -ndX
+    ready = rebase -i @{u}
+    last= !(git lg -10)
+    # push les notes de tous les namespaces dans la branche précisée. Par default les notes ne sont pas pushées avec les commit. D'où cet alias.      
+	pushnote = !sh -c 'git push $1 refs/notes/*' -
+	yesterday = !clear && git log --since '1 day ago' --no-merges --pretty=format':%C(yellow)%h %aN%n %B%n' --author ihommani
+    show = !git show --oneline
+	test = "!gi() { curl http://www.gitignore.io/api/$@ ;}; gi"
 [core]
 	pager = cat
         # Pas de bol et sous Windows sans msysGit ? Supposons que tu as tout de même Notepad++…
