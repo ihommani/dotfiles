@@ -87,10 +87,7 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+{{ template "common_aliases.tmpl" . }} 
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -122,8 +119,10 @@ if [ -f '/home/ihommani/bin/google-cloud-sdk/path.bash.inc' ]; then . '/home/iho
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/ihommani/bin/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ihommani/bin/google-cloud-sdk/completion.bash.inc'; fi
 
-export PATH=$HOME/bin/tgenv/bin:$HOME/bin/tfenv/bin:$HOME/bin:$PATH
-export EDITOR=vim
+{{ template "common_path_content.tmpl" . }}
+export PATH=$HOME/bin/tgenv/bin:$HOME/bin/tfenv/bin:$PATH
+
+{{ template "common_editor.tmpl" . }}
 
 complete -C /usr/local/bin/terraform_0.12.31 terraform_0.12.31
 
