@@ -104,6 +104,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 function tmux() {
+  # If arguments are provided, pass them directly to the real tmux binary
+  if [[ $# -gt 0 ]]; then
+    command tmux "$@"
+    return
+  fi
+
   # Check if we are not already inside a tmux session
   if [[ -z "$TMUX" ]]; then
     # Get the basename of the current directory and use it as the session name
