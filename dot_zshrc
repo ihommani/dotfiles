@@ -102,6 +102,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias tmux="tmux new -s $(basename $(pwd))"
+
 export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(/home/user/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
