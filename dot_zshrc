@@ -103,6 +103,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+function tmux_named_session() {
+  if [[ -z "$TMUX" ]]; then # Checks if we are not already inside a tmux session
+    SESSION_NAME=$(basename "$(pwd)") # Get the base name of the current directory
+    tmux new -s "$SESSION_NAME" # Create a new tmux session with the directory name
+  else
+    echo "You are already inside a tmux session. To create a new session, exit the current one or use 'tmux new -s <session_name>'."
+  fi
+}
+alias tmux='tmux_named_session' # Alias 'tmux' command to our custom function
+
+
 export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(/home/user/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
