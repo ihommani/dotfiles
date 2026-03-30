@@ -103,15 +103,25 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-function tmux_named_session() {
-  if [[ -z "$TMUX" ]]; then # Checks if we are not already inside a tmux session
-    SESSION_NAME=$(basename "$(pwd)") # Get the base name of the current directory
-    tmux new -s "$SESSION_NAME" # Create a new tmux session with the directory name
+function tmux() {
+  # Check if we are not already inside a tmux session
+  if [[ -z "$TMUX" ]]; then
+    # Get the basename of the current directory and use it as the session name
+    local SESSION_NAME
+    SESSION_NAME=$(basename "$(pwd)")
+
+    # If the session already exists, attach to it, otherwise create a new one
+    if command tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+      command tmux attach -t "$SESSION_NAME"
+    else
+      command tmux new -s "$SESSION_NAME"
+    fi
   else
-    echo "You are already inside a tmux session. To create a new session, exit the current one or use 'tmux new -s <session_name>'."
+    # Warn the user if already inside a tmux session
+    echo "You are already inside a tmux session. To create a new one, exit the current session or use 'tmux new -s <session_name>'."
   fi
 }
-alias tmux='tmux_named_session' # Alias 'tmux' command to our custom function
+
 
 
 export PATH="$HOME/.local/bin:$PATH"
