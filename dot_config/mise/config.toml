@@ -1,0 +1,29 @@
+[settings]
+env_shell_expand = true
+
+[tools]
+age = "latest"
+bat = "latest"
+btop = "latest"
+chezmoi = "latest"
+claude = "latest"
+claude-powerline = "latest"
+ctop = "latest"
+fastfetch = "latest"
+fd = "latest"
+gh = "2.87.2"
+node = "latest"
+prek = "latest"
+ripgrep = "latest"
+terraform = "latest"
+terraform-docs = "latest"
+terragrunt = "latest"
+tflint = "latest"
+tmux = "latest"
+trivy = "latest"
+usage = "latest"
+uv = "latest"
+watchexec = "latest"
+
+[tasks.clean_tf_tg_cache]
+run = "find . -type d '(' -name .terraform -o -name .terragrunt -o -name .terragrunt-cache ')' -exec rm -rf {} ';'"
