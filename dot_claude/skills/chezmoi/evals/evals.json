@@ -1,0 +1,94 @@
+{
+  "skill_name": "chezmoi",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to start tracking my ~/.inputrc with chezmoi. It's a simple readline config, same on all my machines.",
+      "expected_output": "Uses chezmoi add ~/.inputrc (plain file, no template). Does NOT suggest vim or direct editing. Does not suggest a template since the file is identical across machines.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "e1-a1",
+          "name": "uses-chezmoi-add",
+          "description": "Response includes `chezmoi add ~/.inputrc` as the primary command"
+        },
+        {
+          "id": "e1-a2",
+          "name": "no-direct-edit",
+          "description": "Response does NOT suggest editing ~/.inputrc directly (no `vim ~/.inputrc`, `nano ~/.inputrc`, or similar direct edit of the home directory file)"
+        },
+        {
+          "id": "e1-a3",
+          "name": "no-unnecessary-template",
+          "description": "Response does NOT suggest making it a template (--template flag or .tmpl), since the user stated the file is the same on all machines"
+        },
+        {
+          "id": "e1-a4",
+          "name": "mentions-chezmoi-cat-or-diff",
+          "description": "Response mentions chezmoi cat or chezmoi diff for validating the result"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to update my .gitconfig. My work email is different from my personal one, and on my work machine I go through a corporate HTTP proxy.",
+      "expected_output": "Identifies .gitconfig should be a template. Uses chezmoi edit (not direct vim). Recommends ~/.chezmoidata.json for email/work flag. Shows or describes template with {{ if .work }} conditional for proxy. Mentions chezmoi cat for validation.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "e2-a1",
+          "name": "identifies-template-need",
+          "description": "Response identifies the file should be managed as a template (mentions .tmpl, chezmoi add --template, or chezmoi chattr +template)"
+        },
+        {
+          "id": "e2-a2",
+          "name": "uses-chezmoi-edit-not-vim",
+          "description": "Response uses `chezmoi edit` as the editing command, NOT `vim ~/.gitconfig` or direct editing of the home directory file"
+        },
+        {
+          "id": "e2-a3",
+          "name": "mentions-chezmoidata",
+          "description": "Response mentions ~/.chezmoidata.json (or chezmoidata.toml/yaml) for storing the email and/or work flag"
+        },
+        {
+          "id": "e2-a4",
+          "name": "shows-conditional-template",
+          "description": "Response shows or describes a Go template conditional ({{ if .work }} or similar) for the proxy section"
+        },
+        {
+          "id": "e2-a5",
+          "name": "mentions-chezmoi-cat",
+          "description": "Response mentions `chezmoi cat` to validate the rendered output"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My .bashrc and .zshrc both define the exact same aliases block. It's getting annoying to keep them in sync. What's the right way to handle this in chezmoi?",
+      "expected_output": "Recommends .chezmoitemplates/ for the shared fragment. Both .bashrc and .zshrc become .tmpl files. Shows {{ template \"fragment.tmpl\" . }} syntax. Explains that the fragment is not rendered directly to ~/.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "e3-a1",
+          "name": "recommends-chezmoitemplates",
+          "description": "Response recommends creating a fragment in the .chezmoitemplates/ directory"
+        },
+        {
+          "id": "e3-a2",
+          "name": "both-files-become-tmpl",
+          "description": "Response indicates both .bashrc and .zshrc should become template files (.tmpl)"
+        },
+        {
+          "id": "e3-a3",
+          "name": "shows-template-include-syntax",
+          "description": "Response shows the {{ template \"...\" . }} include syntax (with the dot for passing data context)"
+        },
+        {
+          "id": "e3-a4",
+          "name": "fragment-not-rendered-directly",
+          "description": "Response explains (explicitly or implicitly) that files in .chezmoitemplates/ are not rendered to ~/ themselves"
+        }
+      ]
+    }
+  ]
+}
