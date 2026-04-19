@@ -133,9 +133,26 @@ chezmoi data    # shows every variable available in templates (JSON)
 | `.chezmoi.hostname` | short hostname |
 | `.chezmoi.username` | current user |
 | `.chezmoi.homeDir` | home directory path |
+| `.chezmoi.osRelease.id` | distro ID from `/etc/os-release` (e.g. `"bluefin"`, `"ubuntu"`) |
 
-Custom variables live in `~/.chezmoidata.json` (or `.toml` / `.yaml`).
-They're deterministic — you define them, and templates depend on them.
+Custom variables — two valid locations (NOT `~/`, which is silently ignored):
+
+**Option A — source directory** (preferred for per-machine data committed to the repo):
+```bash
+# File: $(chezmoi source-path)/.chezmoidata.toml  ← leading dot required
+machine_profile = "work"
+```
+
+**Option B — chezmoi config file** (preferred for secrets or data not committed to the repo):
+```toml
+# File: ~/.config/chezmoi/chezmoi.toml
+[data]
+  machine_profile = "work"
+```
+
+Both options make variables available as `.machine_profile` in templates.
+Before reaching for a custom variable, check `chezmoi data` — built-in variables like
+`.chezmoi.osRelease.id` often already contain what you need.
 
 ---
 
@@ -143,7 +160,7 @@ They're deterministic — you define them, and templates depend on them.
 
 - Whether the file needs to vary by machine/OS → determines plain vs template
 - Whether a repeated config block belongs in `.chezmoitemplates/` → reduces duplication
-- Whether to add new keys to `~/.chezmoidata.json` vs inline values in the template
+- Whether to add new keys to `.chezmoidata.toml` (source dir) vs inline values in the template
 - If `chezmoi managed` shows an unexpected state for the target file
 
 ---
