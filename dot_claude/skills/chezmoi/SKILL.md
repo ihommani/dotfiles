@@ -93,6 +93,34 @@ template. Use it after every edit to confirm the output is what you expect.
 
 ---
 
+## Commit the change
+
+After validating, commit the modified source file(s) to the chezmoi git repo.
+Use `chezmoi git` — it proxies git commands directly into the source directory
+without requiring a `cd`.
+
+```bash
+# See what changed in the source directory
+chezmoi git status
+
+# Stage the specific file(s) — use the source-directory name, not the home path
+chezmoi git add -- dot_file           # plain file
+chezmoi git add -- dot_file.tmpl      # template
+chezmoi git add -- .chezmoitemplates/fragment.tmpl   # sub-template
+
+# Commit with a meaningful message
+chezmoi git commit -- -m "feat: add .file"
+chezmoi git commit -- -m "feat: manage .gitconfig as template"
+chezmoi git commit -- -m "refactor: extract shared aliases to .chezmoitemplates"
+```
+
+The source filename uses chezmoi's encoding (`dot_` prefix, `.tmpl` suffix, etc.).
+If you're unsure of the exact source name, run `chezmoi source-path ~/.file` first.
+
+Pushing to the remote is not part of this skill's scope — that's handled separately.
+
+---
+
 ## Template data quick reference
 
 ```bash
