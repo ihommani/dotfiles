@@ -1,0 +1,2 @@
+# Machine profile for conditional template rendering
+machine_profile = "gcp-workstation"
