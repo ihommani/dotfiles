@@ -1,7 +1,7 @@
 ---
 description: Create a detailed implementation plan through interactive research with codebase agents
 model: opus
-disable-model-invocation: true
+disable-model-invocation: false
 context: fork
 ---
 

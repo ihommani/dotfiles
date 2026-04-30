@@ -1,7 +1,7 @@
 ---
 description: Implement an approved plan phase by phase with automated and manual verification checkpoints
 model: sonnet
-disable-model-invocation: true
+disable-model-invocation: false
 context: fork
 ---
 
