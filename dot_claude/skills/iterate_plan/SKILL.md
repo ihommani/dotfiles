@@ -2,7 +2,6 @@
 description: Iterate on existing implementation plans with thorough research and updates
 model: opus
 disable-model-invocation: false
-context: fork
 ---
 
 # Iterate Implementation Plan

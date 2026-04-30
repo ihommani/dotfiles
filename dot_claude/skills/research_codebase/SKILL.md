@@ -2,7 +2,6 @@
 description: Conduct comprehensive codebase research by spawning parallel specialist agents and synthesizing findings
 model: opus
 disable-model-invocation: false
-context: fork
 ---
 
 # Research Codebase
