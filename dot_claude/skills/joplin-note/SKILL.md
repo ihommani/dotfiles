@@ -37,6 +37,12 @@ Do **not** add this tag when updating an existing note — the note wasn't creat
 
 ---
 
+## Note Types
+
+Most notes follow the default workflow below. When the user wants to document a **tool** (CLI tool, library, or application), read `references/tool-note.md` before proceeding — it uses a different folder structure and a fixed template.
+
+---
+
 ## Workflow
 
 ### Creating a new note
