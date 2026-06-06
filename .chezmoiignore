@@ -1,3 +1,3 @@
-{{ if ne (env "CLAUDE_PERSONAL") "true" }}
+{{ if not .claude_personal }}
 .claude/settings.json
 {{ end }}
