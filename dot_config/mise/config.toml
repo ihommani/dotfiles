@@ -16,6 +16,7 @@ node = "latest"
 pipx = "latest"
 prek = "latest"
 ripgrep = "latest"
+rust = "latest"
 rumdl = "latest"
 terraform = "latest"
 terraform-docs = "latest"
@@ -29,3 +30,6 @@ watchexec = "latest"
 
 [tasks.clean_tf_tg_cache]
 run = "find . -type d '(' -name .terraform -o -name .terragrunt -o -name .terragrunt-cache ')' -exec rm -rf {} ';'"
+
+[env]
+EDITOR = "/usr/bin/vim"
