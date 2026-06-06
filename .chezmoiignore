@@ -1,3 +1,3 @@
-{{ if not .claude_personal }}
+{{ if ne .machine_profile "personal" }}
 .claude/settings.json
 {{ end }}
