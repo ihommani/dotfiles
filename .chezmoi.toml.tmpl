@@ -1,0 +1,3 @@
+{{- $machineProfile := promptStringOnce . "machine_profile" "Machine profile (e.g. personal, gcp-workstation)" "personal" -}}
+[data]
+  machine_profile = {{ $machineProfile | quote }}
