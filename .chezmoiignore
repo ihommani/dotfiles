@@ -1,0 +1,3 @@
+{{ if ne (env "CLAUDE_PERSONAL") "true" }}
+.claude/settings.json
+{{ end }}

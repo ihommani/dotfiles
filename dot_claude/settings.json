@@ -1,0 +1,52 @@
+{
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "1800000",
+    "BASH_MAX_TIMEOUT_MS": "7200000"
+  },
+  "permissions": {
+    "allow": [
+      "mcp__joplin__list_tags",
+      "mcp__joplin__create_tag",
+      "mcp__joplin__tag_note",
+      "mcp__joplin__search",
+      "mcp__joplin__untag_note"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y @owloops/claude-powerline@latest"
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "token-saver@token-saver-marketplace": true,
+    "learn@agentskill-sh": true,
+    "claude-powerline@claude-powerline": true
+  },
+  "extraKnownMarketplaces": {
+    "token-saver-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "ppgranger/token-saver"
+      }
+    },
+    "agentskill-sh": {
+      "source": {
+        "source": "url",
+        "url": "https://agentskill.sh/marketplace.json"
+      }
+    },
+    "claude-powerline": {
+      "source": {
+        "source": "github",
+        "repo": "Owloops/claude-powerline"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "medium"
+}
