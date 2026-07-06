@@ -33,6 +33,7 @@ usage = "latest"
 uv = "latest"
 watchexec = "latest"
 yq = "latest"
+herdr = "latest"
 
 [tasks.clean_tf_tg_cache]
 run = "find . -type d '(' -name .terraform -o -name .terragrunt -o -name .terragrunt-cache ')' -exec rm -rf {} ';'"
