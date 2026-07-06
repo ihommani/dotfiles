@@ -47,6 +47,7 @@
       }
     }
   },
+  "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "medium"
+  "tui": "fullscreen"
 }
