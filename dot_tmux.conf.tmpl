@@ -44,8 +44,15 @@ set -g status-right "#{host} %Y-%m-%d %H:%M"
 set -g status-right-length 50
 
 # -- Clipboard ------------------------------------------
+{{- if or (lookPath "wl-copy") (lookPath "xsel") (lookPath "xclip") }}
+# Clipboard backend found: tmux-yank will drive it
 set -g @yank_action 'copy-pipe-no-clear'
 set -g @yank_with_mouse on
+{{- else }}
+# No clipboard backend on this host.
+# Use SHIFT+drag to copy — the terminal (VTE/Ptyxis) bypasses tmux and
+# writes directly to the local clipboard.
+{{- end }}
 
 # -- Plugins -----------------------------------------------
 # Plugin manager
@@ -61,7 +68,9 @@ set -g @tmux_power_theme gold
 # -- I rather prefer to use tmuxp utility instead of tmux-resurrect and continuum
 # set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+{{- if or (lookPath "wl-copy") (lookPath "xsel") (lookPath "xclip") }}
 set -g @plugin 'tmux-plugins/tmux-yank'
+{{- end }}
 # set -g @plugin 'tmux-plugins/tmux-continuum'
 
 # Initialize TMUX plugin manager
