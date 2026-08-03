@@ -62,27 +62,51 @@ Run `chezmoi data` to see the full JSON of available variables. Key built-ins:
 | `.chezmoi.homeDir` | `/home/ismael` |
 | `.chezmoi.kernel.osrelease` | `6.1.0-arch1` (Linux only) |
 
-### Custom variables via `~/.chezmoidata.json`
+### Custom variables
 
-```json
-{
-  "email": "ismael@home.org",
-  "work": false,
-  "editor": "nvim"
-}
+A data file placed in `~/` is **silently ignored** by chezmoi. There are two valid
+locations, and the choice depends on whether the value is the same on every machine.
+
+#### Same value everywhere → `.chezmoidata.toml` in the source directory
+
+```toml
+# File: $(chezmoi source-path)/.chezmoidata.toml   ← leading dot required
+editor = "nvim"
 ```
 
-Access in templates:
+This file is committed to the repo, so every machine sees the same value.
+
+#### Value differs per machine → `.chezmoi.toml.tmpl` in the source directory
+
+This template generates each machine's local `~/.config/chezmoi/chezmoi.toml`, which is
+**not** committed. `promptStringOnce` asks the question on first `chezmoi init` and never
+asks again:
+
+```gotemplate
+{{- $machineProfile := promptStringOnce . "machine_profile" "Machine profile (e.g. personal, gcp-workstation)" "personal" -}}
+[data]
+  machine_profile = {{ $machineProfile | quote }}
+```
+
+Set a profile non-interactively:
+
+```bash
+chezmoi init --promptString machine_profile=gcp-workstation
+```
+
+#### Access in templates
+
+Both locations expose the value at the top level of the data context:
 
 ```
 git config --global user.email {{ .email | quote }}
-{{ if .work }}
-# work-specific section
+{{ if eq .machine_profile "personal" }}
+# personal-machine-only section
 {{ end }}
 ```
 
-You can also put data in `~/.config/chezmoi/chezmoi.toml` under a `[data]` section —
-but `~/.chezmoidata.json` is simpler for deterministic custom data.
+Before adding a custom variable, run `chezmoi data` — a built-in like
+`.chezmoi.osRelease.id` often already carries the distinction you need.
 
 ---
 
