@@ -12,6 +12,7 @@
       "mcp__joplin__untag_note"
     ]
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest"
@@ -25,7 +26,8 @@
     "claude-md-management@claude-plugins-official": true,
     "token-saver@token-saver-marketplace": true,
     "learn@agentskill-sh": true,
-    "claude-powerline@claude-powerline": true
+    "claude-powerline@claude-powerline": true,
+    "agent-skills@addy-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "token-saver-marketplace": {
@@ -45,9 +47,17 @@
         "source": "github",
         "repo": "Owloops/claude-powerline"
       }
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/addyosmani/agent-skills.git"
+      }
     }
   },
   "effortLevel": "medium",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "tui": "fullscreen"
+  "agentPushNotifEnabled": true,
+  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '{{ .chezmoi.homeDir }}/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
 }
