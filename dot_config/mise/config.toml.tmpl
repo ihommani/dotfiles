@@ -43,3 +43,9 @@ op = "latest"
 
 [tasks.clean_tf_tg_cache]
 run = "find . -type d '(' -name .terraform -o -name .terragrunt -o -name .terragrunt-cache ')' -exec rm -rf {} ';'"
+
+[tasks.remove_merged_branches]
+description = "Remove branches that have been merged into the default branch"
+file = "~/.mise/tasks/remove_merged_branches.sh"
+interactive = true
+dir = "{{ cwd }}"
