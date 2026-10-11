@@ -12,7 +12,11 @@
       "mcp__joplin__untag_note"
     ]
   },
+{{- if eq .machine_profile "personal" }}
+  "model": "claude-haiku-5-5",
+{{- else }}
   "model": "opus",
+{{- end }}
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest"
@@ -59,5 +63,29 @@
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "agentPushNotifEnabled": true,
-  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '{{ .chezmoi.homeDir }}/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '{{ .chezmoi.homeDir }}/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  }
 }
